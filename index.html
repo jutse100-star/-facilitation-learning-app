@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>引導與反思研究｜承前啟後學習 App V2.1</title>
+<title>引導與反思研究｜承前啟後學習 App V2.2</title>
 <style>
 :root{--bg:#f4f7fb;--card:#fff;--ink:#172033;--muted:#65758b;--blue:#214f82;--blue2:#386f9f;--line:#dbe4ef;--soft:#edf4fb;--gold:#fff7df}
 *{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","PingFang TC",sans-serif;background:var(--bg);color:var(--ink);line-height:1.65}
@@ -14,10 +14,13 @@ small,.muted{color:var(--muted)}h2{font-size:22px;margin:5px 0 12px}h3{font-size
 button.primary{background:var(--blue);color:white;border:0;border-radius:10px;padding:11px 15px;font-weight:650}button.secondary{background:white;border:1px solid var(--line);border-radius:10px;padding:9px 12px}
 textarea,select,input[type=text]{width:100%;font:inherit;border:1px solid var(--line);border-radius:10px;padding:11px;background:#fff;margin:5px 0 10px}
 .step{border-left:5px solid #6c91b8}.stepno{display:inline-block;background:var(--soft);color:var(--blue);font-weight:800;border-radius:999px;padding:3px 9px;margin-right:6px}.concepts{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px}.concept{background:#f8fafc;border:1px solid var(--line);border-radius:12px;padding:12px}.result{border-left:4px solid #4c78a8;background:#f0f5fb;padding:11px 13px;margin:10px 0}.prof{background:var(--gold);border:1px solid #f0d98d;border-radius:12px;padding:13px}.choice label,.checks label{display:block;margin:8px 0;font-weight:400}.answer{display:none}.answer.show{display:block}.flowline{text-align:center;font-weight:750;color:var(--blue);padding:10px}.lesson-note{font-size:13px;color:var(--muted)}.prompt{font-weight:650;margin:8px 0}.status{color:#255c72;font-size:13px;margin-left:6px}.concept strong{display:block;color:var(--blue);margin-bottom:5px}.concept p{margin:0;color:#45546a;font-size:14px}.panel details{padding:11px;border:1px solid var(--line);border-radius:10px;background:#f7f9fc}.panel summary{cursor:pointer;font-weight:700}.footer{text-align:center;color:var(--muted);font-size:12px;margin-top:30px}
+.progressbar{width:100%;height:10px;background:#e4ebf4;border-radius:20px;overflow:hidden;margin:9px 0}.progressbar>div{height:100%;background:#3277a2;transition:width .2s}.progress-meta{display:flex;align-items:center;gap:12px;justify-content:space-between;flex-wrap:wrap}.week-status{display:inline-block;background:#edf3fb;border-radius:8px;padding:3px 8px;color:#345b7d;font-size:12px;margin-top:9px}.decision-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.decision-grid label{display:block;font-weight:700;font-size:14px}.decision-grid textarea{min-height:115px}.notice{background:#f7f9fc;border-left:4px solid #527caa;padding:10px 13px;margin:12px 0;border-radius:4px}.tools{display:flex;gap:9px;flex-wrap:wrap;align-items:center}.meter-mini{height:7px;background:#e5edf5;border-radius:9px;overflow:hidden;margin:6px 0}.meter-mini>i{display:block;height:100%;background:#4782ab}.week:focus-visible,button:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #f1a843;outline-offset:3px}
+@media(max-width:650px){.decision-grid{grid-template-columns:1fr}.decision-grid textarea{min-height:90px}}
 @media(max-width:600px){h1{font-size:23px}.card{padding:15px}.grid{grid-template-columns:1fr 1fr}.week{min-height:160px}}
+@media(max-width:420px){.grid{grid-template-columns:1fr}.week{min-height:0}}
 </style></head>
 <body>
-<header><div class="wrap"><div class="eyebrow">研究所課程｜16週互動學習工具 V2.1</div>
+<header><div class="wrap"><div class="eyebrow">研究所課程｜16週互動學習工具 V2.2</div>
 <h1>引導與反思研究｜承前啟後</h1>
 <div class="sub">回望 Retrieve → 理解 Learn → 連結 Connect → 挑戰 Challenge → 反思 Reflect → 前探 Preview</div></div></header>
 <main class="wrap">
@@ -29,7 +32,8 @@ textarea,select,input[type=text]{width:100%;font:inherit;border:1px solid var(--
 <section id="map" class="panel active">
 <div class="card"><h2>從「會帶活動」走向「會促進學習」</h2>
 <div class="path"><span class="pill">理解學習</span>→<span class="pill">設計經驗</span>→<span class="pill">讀懂團體</span>→<span class="pill">專業判斷</span>→<span class="pill">引導實作</span>→<span class="pill">反思深化</span>→<span class="pill">學習遷移</span>→<span class="pill">專業發展</span></div>
-<p class="muted">點選任一週，再按「進入本週學習」。16週均提供核心概念解釋、情境挑戰、認知反思及承前啟後任務；輸入內容會自動儲存在此裝置。</p></div>
+<p class="muted">點選任一週開始學習；各週「作答進度」只表示填寫情況，不代表學習能力評分。輸入時會自動儲存在此裝置。</p>
+<div id="overview" aria-live="polite"></div><div class="tools"><button id="resumeWeek" class="primary">繼續上次學習 →</button><span class="muted">V2.2：加入專業判斷練習、進度與備份還原</span></div></div>
 <div id="weeks" class="grid"></div>
 <div id="weekInfo" class="card"></div>
 </section>
@@ -42,7 +46,7 @@ textarea,select,input[type=text]{width:100%;font:inherit;border:1px solid var(--
 <label>2. 三至五個核心概念</label><textarea data-p="2"></textarea><label>3. 理論關係</label><textarea data-p="3"></textarea>
 <label>4. 實務案例</label><textarea data-p="4"></textarea><label>5. 體驗活動</label><textarea data-p="5"></textarea>
 <label>6. 三個討論問題（理解→分析→評鑑／創造）</label><textarea data-p="6"></textarea>
-<button id="savePresenter" class="primary">儲存本週整理</button> <button id="fillPresenter" class="secondary">帶入本週導讀範本（不覆蓋既有回答）</button><span id="saveMsg" class="muted"></span></div>
+<button id="savePresenter" class="primary">儲存本週整理</button> <button id="downloadPresenter" class="secondary">匯出本週導讀稿 (.md)</button> <button id="fillPresenter" class="secondary">帶入本週導讀範本（不覆蓋既有回答）</button><span id="saveMsg" class="muted"></span></div>
 <div class="card checks"><h3>完成度檢查</h3>
 <label><input type="checkbox"> 核心問題清楚</label><label><input type="checkbox"> 聚焦3–5個核心概念</label>
 <label><input type="checkbox"> 說明概念關係</label><label><input type="checkbox"> 明確承接前週</label>
@@ -52,9 +56,10 @@ textarea,select,input[type=text]{width:100%;font:inherit;border:1px solid var(--
 
 <section id="journal" class="panel">
 <div class="card"><h2>我的學習軌跡</h2><p>每週留下一句：「這一週，我對引導最大的改變是……」</p>
-<label>週次</label><select id="journalWeek"></select><textarea id="journalText"></textarea><button id="saveJournal" class="primary">儲存反思</button> <button id="exportRecords" class="secondary">匯出個人學習紀錄</button> <span id="journalStatus" class="muted"></span></div><div id="journalList"></div>
+<label>週次</label><select id="journalWeek"></select><textarea id="journalText"></textarea><button id="saveJournal" class="primary">儲存反思</button> <button id="exportRecords" class="secondary">匯出個人學習紀錄</button> <span id="journalStatus" class="muted"></span>
+<div class="notice"><b>資料備份與還原</b><p>此網站沒有帳號或雲端同步。換手機前請先匯出 JSON；在新裝置選擇備份檔，即可將紀錄合併還原，<b>預設不覆蓋已有作答</b>。</p><label for="importRecords">選擇先前匯出的 .json 備份</label><input id="importRecords" type="file" accept=".json,application/json"><p class="muted" id="importStatus" role="status"></p></div></div><div id="journalList"></div>
 </section>
-<div class="footer">引導與反思研究｜承前啟後學習 App V2.1 · 學習紀錄儲存在本機瀏覽器</div>
+<div class="footer">引導與反思研究｜承前啟後學習 App V2.2 · 學習紀錄儲存在本機瀏覽器</div>
 </main>
 <script>const W=[
 {t:"經驗、反思與遷移",q:"經驗如何成為學習？",c:["Experience 經驗","Observe 察覺","Reflect 反思","Meaning 意義建構","Apply 應用"],back:"先從自己的活動經驗出發：完成一個活動，是否就代表已經學會？",link:"Experience → Observe → Reflect → Meaning → Apply",case:"你參加一個合作活動，活動結束時很開心，但說不出自己學到了什麼。這算學習嗎？",reflect:["經驗與學習有什麼不同？","反思如何改變一段經驗的意義？","如果你是引導者，會如何讓經驗繼續發生學習？"],next:"不同學習者面對同一經驗，會產生相同的學習嗎？",prof:"不要急著教反思技巧，先建立核心判斷：Experience ≠ Learning。"},
@@ -81,7 +86,7 @@ const $=id=>document.getElementById(id);
 const store={
   get(k){try{return localStorage.getItem(k)}catch(e){return null}},
   set(k,v){try{localStorage.setItem(k,v);return true}catch(e){return false}},
-  all(){let o={};try{for(let i=0;i<localStorage.length;i++){let k=localStorage.key(i);if(k&&(/^(lesson-|presenter-|journal-|ui-)/).test(k))o[k]=localStorage.getItem(k)}}catch(e){}return o}
+  all(){let o={};try{for(let i=0;i<localStorage.length;i++){let k=localStorage.key(i);if(k&&(/^(lesson-|presenter-|journal-|ui-|check-)/).test(k))o[k]=localStorage.getItem(k)}}catch(e){}return o}
 };
 const esc=s=>String(s).replace(/[&<>"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
 function fillOptions(el){W.forEach((w,i)=>el.add(new Option(`第${i+1}週｜${w.t}`,String(i))))}
@@ -89,9 +94,18 @@ function fillOptions(el){W.forEach((w,i)=>el.add(new Option(`第${i+1}週｜${w.
 function tab(id){document.querySelectorAll('.tab,.panel').forEach(e=>e.classList.remove('active'));document.querySelector(`.tab[data-tab="${id}"]`).classList.add('active');$(id).classList.add('active')}
 document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>tab(b.dataset.tab)));
 const grid=$('weeks');
+const progressFields=i=>[...Array.from({length:3},(_,k)=>`recall${k+1}`),'connect','case','evidence','interpret','action','r1','r2','eval','r3'].map(k=>`lesson-${i}-${k}`);
+function progress(i){let n=progressFields(i).filter(k=>(store.get(k)||'').trim().length>0).length;return {n,total:12}}
+function updateOverview(){
+ const all=W.map((_,i)=>progress(i));const started=all.filter(p=>p.n>0).length,finished=all.filter(p=>p.n===p.total).length;
+ const answered=all.reduce((a,p)=>a+p.n,0);const max=all.length*12;const percent=Math.round(answered/max*100);
+ $('overview').innerHTML=`<div class="progress-meta"><b>我的學習作答進度</b><span>已開始 ${started} / 16 週 · 已填滿 ${finished} 週</span></div><div class="progressbar" role="progressbar" aria-label="16週作答完成比例" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${percent}"><div style="width:${percent}%"></div></div><small>已作答 ${answered} / ${max} 欄（${percent}%），不作成績評分</small>`;
+ document.querySelectorAll('.week-status').forEach((e,i)=>{const p=all[i];e.textContent=p.n===0?'尚未作答':p.n===p.total?'作答欄位已填滿':`已填 ${p.n}/${p.total} 欄`;});
+}
+
 W.forEach((w,i)=>{
   const d=document.createElement('div');d.className='card week';d.tabIndex=0;d.setAttribute('role','button');
-  d.innerHTML=`<small>第${i+1}週</small><h3>${esc(w.t)}</h3><div class="q">${esc(w.q)}</div>`;
+  d.innerHTML=`<small>第${i+1}週</small><h3>${esc(w.t)}</h3><div class="q">${esc(w.q)}</div><span class="week-status"></span>`;
   d.addEventListener('click',()=>showWeek(i));d.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();showWeek(i)}});grid.appendChild(d)
 });
 function showWeek(i){
@@ -99,6 +113,7 @@ function showWeek(i){
   const w=W[i];$('weekInfo').innerHTML=`<small>第${i+1}週</small><h2>${esc(w.t)}</h2><p><b>核心問題：</b>${esc(w.q)}</p><p><b>承前：</b>${esc(w.back)}</p><p><b>概念主線：</b>${esc(w.link)}</p><button class="primary" id="enterWeek">進入本週學習 →</button>`;
   $('enterWeek').addEventListener('click',()=>goLearn(i));
 }
+$('resumeWeek').onclick=()=>goLearn(Number(store.get('ui-week'))>=0&&Number(store.get('ui-week'))<16?Number(store.get('ui-week')):0);
 function goLearn(i){$('learnWeek').value=String(i);renderLesson();tab('learn');window.scrollTo({top:0,behavior:'smooth'})}
 function answers(i){
  let p=i?W[i-1]:null;
@@ -126,32 +141,39 @@ function renderLesson(){
   <details><summary>完成回憶後，查看前週核心概念</summary><p>${prev?prev.c.map(x=>esc(x)).join('、'):'經驗、察覺、反思、意義、應用'}</p></details></div>
   <div class="card step"><h3><span class="stepno">② 理解 Learn</span> 本週核心概念與解釋</h3><div class="concepts">${conceptHtml}</div></div>
   <div class="card step"><h3><span class="stepno">③ 連結 Connect</span></h3><p>${esc(w.link)}</p><label class="prompt">前一週的學習如何幫助你理解本週？</label><textarea data-weeknote="${i}-connect" rows="3" placeholder="請用自己的話寫出跨週連結"></textarea></div>
-  <div class="card step"><h3><span class="stepno">④ 挑戰 Challenge</span> 情境判斷</h3><p>${esc(w.case)}</p><label class="prompt">你會如何判斷、怎麼做？請先說明依據。</label><textarea data-weeknote="${i}-case" rows="3" placeholder="先寫下你的判斷，才查看線索"></textarea>
+  <div class="card step"><h3><span class="stepno">④ 挑戰 Challenge</span> 情境判斷</h3><p>${esc(w.case)}</p><label class="prompt">你的初步判斷是什麼？理由為何？</label><textarea data-weeknote="${i}-case" rows="3" placeholder="先寫自己的想法，再進行專業判讀"></textarea>
+  <div class="notice"><b>引導者專業判斷卡｜觀察 → 詮釋 → 行動</b><p>把「我看到的事實」與「我的推論」分開，並寫出如何判斷下一步是否有效。</p>
+  <div class="decision-grid"><div><label>1. 觀察證據（看見／聽見什麼？）</label><textarea data-weeknote="${i}-evidence" placeholder="具體可觀察的行為，而非貼標籤"></textarea></div>
+  <div><label>2. 可能的解釋（還有其他可能嗎？）</label><textarea data-weeknote="${i}-interpret" placeholder="提出假設，避免把猜測當事實"></textarea></div>
+  <div><label>3. 下一步行動（或有意識地等待）</label><textarea data-weeknote="${i}-action" placeholder="說明行動、倫理界線及再觀察指標"></textarea></div></div></div>
   <details><summary>查看引導線索（先寫自己的判斷）</summary><p>${esc(CUES[i])}</p></details></div>
   <div class="card step"><h3><span class="stepno">⑤ 反思 Reflect</span> 認知深化</h3>${refl}</div>
   <div class="card step"><h3><span class="stepno">⑥ 前探 Preview</span></h3><div class="result"><b>${esc(w.next)}</b></div><p class="muted">下一週開始前，先把這個疑問保留下來。</p></div>
   <div class="card"><details><summary>教授提示（供課後延伸）</summary><p>${esc(w.prof)}</p></details></div>
-  <div class="card"><button class="primary" id="saveLesson">儲存／確認本週回答</button><span class="status" id="lessonSave">輸入時自動儲存於本裝置</span><p class="lesson-note">切換週次或重新開啟網站仍會保留已儲存內容；更換裝置或清除瀏覽器資料則可能遺失，建議定期於「我的學習軌跡」匯出備份。</p></div>`;
+  <div class="card"><div class="progress-meta"><b>本週作答進度</b><span id="thisProgress"></span></div><div class="meter-mini"><i id="thisMeter"></i></div><div class="tools"><button class="primary" id="saveLesson">儲存／確認本週回答</button>${i<15?'<button class="secondary" id="nextWeek">前往下一週 →</button>':''}<span class="status" id="lessonSave">輸入時自動儲存於本裝置</span></div><p class="lesson-note">作答情況不等於學習成果。更換裝置或清除瀏覽器資料前，請到「我的學習軌跡」匯出備份。</p></div>`;
   document.querySelectorAll('[data-weeknote]').forEach(el=>{
     el.value=store.get('lesson-'+el.dataset.weeknote)||'';
-    el.addEventListener('input',()=>{const ok=store.set('lesson-'+el.dataset.weeknote,el.value);$('lessonSave').textContent=ok?'已自動儲存':'本機儲存受限制，請複製備份'});
+    el.addEventListener('input',()=>{const ok=store.set('lesson-'+el.dataset.weeknote,el.value);$('lessonSave').textContent=ok?'已自動儲存':'本機儲存受限制，請複製備份';updateCurrentProgress(i);updateOverview()});
   });
   $('saveLesson').onclick=()=>{
     let ok=true;document.querySelectorAll('[data-weeknote]').forEach(el=>{if(!store.set('lesson-'+el.dataset.weeknote,el.value))ok=false});
-    $('lessonSave').textContent=ok?'本週回答已儲存':'無法儲存，請檢查瀏覽器設定';
+    $('lessonSave').textContent=ok?'本週回答已儲存':'無法儲存，請檢查瀏覽器設定';updateCurrentProgress(i);updateOverview();
   };
+  if(i<15)$('nextWeek').onclick=()=>goLearn(i+1);
+  updateCurrentProgress(i);updateOverview();
 }
+function updateCurrentProgress(i){const p=progress(i);const label=$('thisProgress'),bar=$('thisMeter');if(label)label.textContent=`${p.n}/${p.total} 欄`;if(bar)bar.style.width=Math.round(p.n/p.total*100)+'%'}
 $('learnWeek').addEventListener('change',renderLesson);
 const previousWeek=Number(store.get('ui-week'));
 if(Number.isInteger(previousWeek)&&previousWeek>=0&&previousWeek<16)$('learnWeek').value=String(previousWeek);
-renderLesson();showWeek(Number($('learnWeek').value));
+renderLesson();showWeek(Number($('learnWeek').value));updateOverview();
 function presenterTemplate(i){const w=W[i];return [w.q,w.c.slice(0,5).map((v,j)=>`${j+1}. ${v}：${DESCRIPTIONS[i][j]}`).join('\n'),w.link,w.case,`用一段5–10分鐘的小型活動，觀察：${w.c.slice(0,3).join('、')}。完成後請學生舉出觀察證據。`,w.reflect.map((v,j)=>`${j+1}. ${v}`).join('\n')];}
 function renderPresenter(){
  const i=Number($('presenterWeek').value),w=W[i];store.set('ui-presenter',String(i));
  $('presenterGuide').innerHTML=`<div class="result"><b>核心問題：</b>${esc(w.q)}<p><b>主要概念：</b>${w.c.map(esc).join('、')}</p><b>概念關係：</b>${esc(w.link)}</div><div class="prof"><b>教授提醒：</b>${esc(w.prof)}</div><p><b>前週連結：</b>${esc(w.back)}</p><p><b>實務案例方向：</b>${esc(w.case)}</p><p><b>下週懸念：</b>${esc(w.next)}</p>`;
  document.querySelectorAll('[data-p]').forEach(el=>{el.value=store.get(`presenter-${i}-${el.dataset.p}`)||'';el.oninput=()=>{$('saveMsg').textContent=store.set(`presenter-${i}-${el.dataset.p}`,el.value)?' 已自動儲存':' 本機儲存失敗'}})
 }
-$('presenterWeek').addEventListener('change',renderPresenter);
+$('presenterWeek').addEventListener('change',()=>{renderPresenter();initChecks()});
 const pw=Number(store.get('ui-presenter'));if(Number.isInteger(pw)&&pw>=0&&pw<16)$('presenterWeek').value=String(pw);
 renderPresenter();
 $('savePresenter').onclick=()=>{const i=Number($('presenterWeek').value);let ok=true;document.querySelectorAll('[data-p]').forEach(el=>{if(!store.set(`presenter-${i}-${el.dataset.p}`,el.value))ok=false});$('saveMsg').textContent=ok?' 已儲存':' 無法儲存'};
@@ -160,8 +182,21 @@ $('fillPresenter').onclick=()=>{
  document.querySelectorAll('[data-p]').forEach((el,j)=>{if(!el.value.trim()){el.value=model[j];store.set(`presenter-${i}-${el.dataset.p}`,el.value)}});
  $('saveMsg').textContent=' 已補入空白欄位；既有文字未改動，請自行修訂例子與活動。';
 };
-function renderJournal(){
- $('journalText').value=store.get('journal-'+$('journalWeek').value)||'';
+function initChecks(){document.querySelectorAll('.checks input[type=checkbox]').forEach((el,k)=>{
+ el.checked=store.get(`check-${$('presenterWeek').value}-${k}`)==='1';
+ el.onchange=()=>{store.set(`check-${$('presenterWeek').value}-${k}`,el.checked?'1':'0')};
+});}
+const originalRenderPresenter=renderPresenter;
+renderPresenter=function(){originalRenderPresenter();initChecks();};initChecks();
+function downloadText(name,content,type){const blob=new Blob([content],{type});const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2000)}
+$('downloadPresenter').onclick=()=>{
+ const i=Number($('presenterWeek').value),w=W[i],topics=['本週核心問題','三至五個核心概念','理論關係','實務案例','體驗活動','三個討論問題'];
+ const answers=[...document.querySelectorAll('[data-p]')].map(e=>e.value);
+ const body=`# 第${i+1}週｜${w.t} 導讀整理\n\n`+topics.map((t,j)=>`## ${t}\n\n${answers[j]||'（尚未填寫）'}\n\n`).join('')+`## 承前啟後\n\n${w.back}\n\n下一週：${w.next}\n`;
+ downloadText(`第${i+1}週_引導與反思研究_導讀整理.md`,body,'text/markdown;charset=utf-8');
+};
+function renderJournal(syncInput=true){
+ if(syncInput)$('journalText').value=store.get('journal-'+$('journalWeek').value)||'';
  $('journalList').replaceChildren();
  W.forEach((w,i)=>{const t=store.get('journal-'+i);if(!t)return;
   const d=document.createElement('div');d.className='card';const caption=document.createElement('small');caption.textContent=`第${i+1}週｜${w.t}`;
@@ -171,13 +206,29 @@ function renderJournal(){
 $('journalWeek').addEventListener('change',renderJournal);
 $('journalText').addEventListener('input',()=>{
  let ok=store.set('journal-'+$('journalWeek').value,$('journalText').value);
- $('journalStatus').textContent=ok?' 已自動儲存':' 無法自動儲存';renderJournal();
+ $('journalStatus').textContent=ok?' 已自動儲存':' 無法自動儲存';renderJournal(false);
 });
-$('saveJournal').onclick=()=>{let ok=store.set('journal-'+$('journalWeek').value,$('journalText').value);$('journalStatus').textContent=ok?' 已儲存':' 無法儲存';renderJournal()};
+$('saveJournal').onclick=()=>{let ok=store.set('journal-'+$('journalWeek').value,$('journalText').value);$('journalStatus').textContent=ok?' 已儲存':' 無法儲存';renderJournal(false)};
 renderJournal();
 $('exportRecords').onclick=()=>{
-  let exportData={app:'引導與反思研究 V2.1',exportedAt:new Date().toISOString(),items:store.all()};
-  const blob=new Blob([JSON.stringify(exportData,null,2)],{type:'application/json;charset=utf-8'});
-  const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='引導與反思研究_個人學習紀錄.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2000);
+  let exportData={app:'引導與反思研究 V2.2',exportedAt:new Date().toISOString(),items:store.all()};
+  downloadText('引導與反思研究_個人學習紀錄.json',JSON.stringify(exportData,null,2),'application/json;charset=utf-8');
 };
+$('importRecords').addEventListener('change',async e=>{
+ const file=e.target.files&&e.target.files[0],status=$('importStatus');if(!file)return;
+ try{
+  if(file.size>2*1024*1024)throw Error('備份檔過大（限2MB）');
+  const data=JSON.parse(await file.text());
+  if(!data||typeof data!=='object'||!data.items||typeof data.items!=='object'||Array.isArray(data.items))throw Error('檔案不是本 App 匯出的資料格式');
+  const valid=/^(?:lesson-(?:[0-9]|1[0-5])-(?:recall[1-3]|connect|case|evidence|interpret|action|r1|r2|eval|r3)|presenter-(?:[0-9]|1[0-5])-[1-6]|journal-(?:[0-9]|1[0-5])|ui-(?:week|presenter)|check-(?:[0-9]|1[0-5])-[0-7])$/;
+  let added=0,skipped=0,invalid=0,failed=0;
+  for(const [key,value] of Object.entries(data.items)){
+   if(!valid.test(key)||typeof value!=='string'||value.length>100000){invalid++;continue}
+   if(store.get(key)!==null&&store.get(key)!==''){skipped++;continue}
+   if(store.set(key,value))added++;else failed++;
+  }
+  status.textContent=`還原完成：新增 ${added} 欄、保留原有 ${skipped} 欄、略過不適用 ${invalid} 欄${failed?'、儲存失敗 '+failed+' 欄':''}。`;status.style.color=failed?'#a84242':'#245d55';
+  renderLesson();renderPresenter();renderJournal();updateOverview();showWeek(Number($('learnWeek').value));
+ }catch(err){status.textContent='匯入失敗：'+err.message;status.style.color='#a84242'}finally{e.target.value=''}
+});
 </script></body></html>
