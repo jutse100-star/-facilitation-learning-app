@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>引導與反思研究｜承前啟後學習 App</title>
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--ink:#172033;--muted:#64748b;--blue:#244f86;--line:#dbe3ef;--soft:#eaf1fb}
+*{box-sizing:border-box} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","PingFang TC",sans-serif;background:var(--bg);color:var(--ink)}
+header{background:linear-gradient(120deg,#183a66,#386d9f);color:white;padding:28px 18px}.wrap{max-width:1000px;margin:auto}.eyebrow{opacity:.82;font-size:13px}h1{font-size:25px;margin:7px 0}.sub{opacity:.9}
+nav{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}.tab{border:1px solid var(--line);background:white;border-radius:999px;padding:10px 15px;cursor:pointer}.tab.active{background:var(--blue);color:#fff}
+main{padding:0 16px 40px}.panel{display:none}.panel.active{display:block}.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin:12px 0;box-shadow:0 3px 12px #1e293b0a}
+h2{font-size:21px}h3{font-size:17px;margin-bottom:8px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.week{cursor:pointer;min-height:118px}.week:hover{outline:2px solid #8aaad0}.week small{color:var(--muted)}.q{font-weight:700;margin-top:8px}
+.path{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.pill{background:var(--soft);padding:8px 11px;border-radius:10px}
+button.primary{background:var(--blue);color:white;border:0;border-radius:10px;padding:11px 15px;cursor:pointer}
+textarea,input,select{width:100%;font:inherit;border:1px solid var(--line);border-radius:10px;padding:11px;background:white;margin:5px 0 10px}
+label{font-size:14px;font-weight:650}.muted{color:var(--muted);font-size:14px}.hidden{display:none}.result{border-left:4px solid #4c78a8;padding:10px 12px;background:#f0f5fb;margin-top:10px}
+.checks label{display:block;font-weight:400;margin:8px 0}.footer{text-align:center;color:var(--muted);font-size:12px;margin-top:28px}
+@media(max-width:600px){h1{font-size:22px}.card{padding:15px}}
+</style></head>
+<body>
+<header><div class="wrap"><div class="eyebrow">研究所課程｜16週互動學習工具</div><h1>引導與反思研究｜承前啟後</h1>
+<div class="sub">提取 Retrieve → 連結 Connect → 挑戰 Challenge → 反思 Reflect → 前探 Preview</div></div></header>
+<main class="wrap">
+<nav>
+<button class="tab active" data-tab="map">學習地圖</button>
+<button class="tab" data-tab="student">學生學習</button>
+<button class="tab" data-tab="presenter">報告者助手</button>
+<button class="tab" data-tab="journal">我的學習軌跡</button>
+</nav>
+
+<section id="map" class="panel active">
+<div class="card"><h2>16週學習地圖</h2><div class="path">
+<span class="pill">理解學習</span>→<span class="pill">設計經驗</span>→<span class="pill">讀懂團體</span>→<span class="pill">專業判斷</span>→<span class="pill">引導實作</span>→<span class="pill">反思深化</span>→<span class="pill">學習遷移</span>→<span class="pill">專業發展</span>
+</div></div><div id="weeks" class="grid"></div>
+<div id="weekInfo" class="card"><h3>使用方式</h3><p>點選週次，先掌握本週核心問題，再進入「學生學習」完成回望、連結、挑戰、反思與前探。</p></div>
+</section>
+
+<section id="student" class="panel">
+<div class="card"><h2>學生學習模式</h2><label>選擇週次</label><select id="studentWeek"></select><div id="studentContent"></div></div>
+</section>
+
+<section id="presenter" class="panel">
+<div class="card"><h2>本週報告者｜導讀整理助手</h2><p class="muted">目的不是替你寫完報告，而是協助把指定閱讀整理成「可理解、可討論、可體驗」的導讀。</p>
+<label>選擇負責週次</label><select id="presenterWeek"></select><div id="presenterPrompt" class="result"></div></div>
+<div class="card">
+<label>1. 本週核心問題</label><textarea data-save="p1" placeholder="這一週真正要回答什麼問題？"></textarea>
+<label>2. 三個核心概念</label><textarea data-save="p2" placeholder="列出3個最重要概念，避免整章摘要。"></textarea>
+<label>3. 理論關係圖（文字版）</label><textarea data-save="p3" placeholder="例如：觀察 → 判斷 → 介入 → 再觀察"></textarea>
+<label>4. 實務案例</label><textarea data-save="p4" placeholder="這個理論在引導現場如何出現？"></textarea>
+<label>5. 體驗活動</label><textarea data-save="p5" placeholder="如何讓同學先經驗，再理解概念？"></textarea>
+<label>6. 三個討論問題</label><textarea data-save="p6" placeholder="理解 → 分析 → 評鑑／創造"></textarea>
+<button class="primary" id="savePresenter">儲存本週整理</button><div id="saveMsg" class="muted"></div>
+</div>
+<div class="card checks"><h3>報告完成度檢查</h3>
+<label><input type="checkbox"> 說清楚本週核心問題</label><label><input type="checkbox"> 聚焦3–5個核心概念</label>
+<label><input type="checkbox"> 說明概念彼此關係</label><label><input type="checkbox"> 連回前一週</label>
+<label><input type="checkbox"> 有實際引導情境</label><label><input type="checkbox"> 有體驗或案例</label>
+<label><input type="checkbox"> 有高層次思考問題</label><label><input type="checkbox"> 留下通往下一週的問題</label>
+</div>
+</section>
+
+<section id="journal" class="panel">
+<div class="card"><h2>我的學習軌跡</h2><p>每週只留下最重要的一句話，到第16週回看自己的引導觀如何改變。</p>
+<label>週次</label><select id="journalWeek"></select><label>這一週，我對引導最大的改變是……</label>
+<textarea id="journalText"></textarea><button class="primary" id="saveJournal">儲存反思</button></div>
+<div id="journalList"></div>
+</section>
+<div class="footer">引導與反思研究｜承前啟後學習 App · v2.0</div>
+</main>
+<script>
+const W=[
+["經驗、反思與遷移","經驗如何成為學習？"],["冒險教育模型與發展","學習如何逐步發展？"],
+["經驗學習：挑戰與選擇","什麼是適切的挑戰？"],["方案規劃與活動設計","如何有意圖地設計經驗？"],
+["團體動力及引導者角色","團體現在發生什麼？"],["適應性領導與引導倫理","何時介入？界線在哪裡？"],
+["團體評估與活動序列","團體下一步需要什麼？"],["團體建立：契約與目標設定","如何建立共同承諾與目標？"],
+["活動前引導：框架與安全","活動開始前如何建立框架？"],["引導技術與活動實作","活動進行中如何引導？"],
+["反思架構與經驗意義化","經驗之後如何產生意義？"],["反思提問與學習遷移","如何用問題促進遷移？"],
+["反思品質與多元學習者","不同學習者如何反思？"],["引導介入與學生實作 I","什麼時候應該介入？"],
+["風險、安全與學生實作 II","如何兼顧學習與安全？"],["課程評量、專業發展與統整","我成為怎樣的引導者？"]
+];
+const key=["經驗不等於學習；經驗需經察覺、反思、意義建構與應用。","同一活動對不同學習者可能產生不同學習。","挑戰不是越高越好；支持與自主選擇是關鍵。","先有目的，再有活動；序列服務學習目標與團體狀態。","任務成果不等於團體歷程；引導者要讀懂互動。","介入不只問有效，也要問適切、倫理與界線。","觀察→快速評估→判斷需求→選擇下一經驗→再觀察。"];
+const weeks=document.querySelector("#weeks");
+W.forEach((w,i)=>{let d=document.createElement("div");d.className="card week";d.innerHTML=`<small>第${i+1}週</small><h3>${w[0]}</h3><div class="q">${w[1]}</div>`;d.onclick=()=>document.querySelector("#weekInfo").innerHTML=`<small>第${i+1}週</small><h2>${w[0]}</h2><p><b>核心問題：</b>${w[1]}</p><p>${key[i]||"本週請從指定閱讀、課堂案例與前週問題建立連結。"}</p>`;weeks.appendChild(d)});
+function opts(sel){W.forEach((w,i)=>sel.add(new Option(`第${i+1}週｜${w[0]}`,i)))}
+opts(studentWeek);opts(presenterWeek);opts(journalWeek);
+document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab,.panel").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.querySelector("#"+b.dataset.tab).classList.add("active")});
+function renderStudent(){
+ let i=+studentWeek.value,w=W[i],prev=i?W[i-1][1]:"你認為「經驗」本身就等於「學習」嗎？",next=i<15?W[i+1][1]:"如何把16週的學習轉化為自己的專業實踐？";
+ studentContent.innerHTML=`<div class="card"><h3>① 回望 Retrieve</h3><p>${prev}</p></div>
+ <div class="card"><h3>② 連結 Connect</h3><p>前一週的概念，如何幫助你回答：<b>${w[1]}</b></p></div>
+ <div class="card"><h3>③ 挑戰 Challenge</h3><p>請提出一個真實引導情境，指出其中最需要判斷的問題。</p><textarea placeholder="我的情境與判斷……"></textarea></div>
+ <div class="card"><h3>④ 反思 Reflect</h3><p><b>理解：</b>今天最重要的概念是什麼？</p><p><b>分析：</b>哪些因素彼此影響？</p><p><b>評鑑／創造：</b>如果再做一次，你會如何調整？</p></div>
+ <div class="card"><h3>⑤ 前探 Preview</h3><p>下一個尚未解決的問題：</p><div class="result"><b>${next}</b></div></div>`;
+}
+studentWeek.onchange=renderStudent;renderStudent();
+function presenter(){
+ let i=+presenterWeek.value;
+ presenterPrompt.innerHTML=`<b>第${i+1}週核心問題：</b>${W[i][1]}<br><span class="muted">整理時請回答：這一週如何承接前週，又留下什麼問題給下一週？</span>`;
+ ["p1","p2","p3","p4","p5","p6"].forEach(k=>{let el=document.querySelector(`[data-save="${k}"]`);el.value=localStorage.getItem(`presenter-${i}-${k}`)||""});
+}
+presenterWeek.onchange=presenter;presenter();
+savePresenter.onclick=()=>{let i=+presenterWeek.value;document.querySelectorAll("[data-save]").forEach(el=>localStorage.setItem(`presenter-${i}-${el.dataset.save}`,el.value));saveMsg.textContent="已儲存在這台裝置。"};
+saveJournal.onclick=()=>{localStorage.setItem("journal-"+journalWeek.value,journalText.value);renderJournal()};
+function renderJournal(){journalList.innerHTML="";W.forEach((w,i)=>{let t=localStorage.getItem("journal-"+i);if(t){let d=document.createElement("div");d.className="card";d.innerHTML=`<small>第${i+1}週｜${w[0]}</small><p>${t}</p>`;journalList.appendChild(d)}})}
+journalWeek.onchange=()=>journalText.value=localStorage.getItem("journal-"+journalWeek.value)||"";journalWeek.onchange();renderJournal();
+</script></body></html>
