@@ -2,106 +2,182 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>引導與反思研究｜承前啟後學習 App</title>
+<title>引導與反思研究｜承前啟後學習 App V2.1</title>
 <style>
-:root{--bg:#f5f7fb;--card:#fff;--ink:#172033;--muted:#64748b;--blue:#244f86;--line:#dbe3ef;--soft:#eaf1fb}
-*{box-sizing:border-box} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","PingFang TC",sans-serif;background:var(--bg);color:var(--ink)}
-header{background:linear-gradient(120deg,#183a66,#386d9f);color:white;padding:28px 18px}.wrap{max-width:1000px;margin:auto}.eyebrow{opacity:.82;font-size:13px}h1{font-size:25px;margin:7px 0}.sub{opacity:.9}
-nav{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}.tab{border:1px solid var(--line);background:white;border-radius:999px;padding:10px 15px;cursor:pointer}.tab.active{background:var(--blue);color:#fff}
-main{padding:0 16px 40px}.panel{display:none}.panel.active{display:block}.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin:12px 0;box-shadow:0 3px 12px #1e293b0a}
-h2{font-size:21px}h3{font-size:17px;margin-bottom:8px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
-.week{cursor:pointer;min-height:118px}.week:hover{outline:2px solid #8aaad0}.week small{color:var(--muted)}.q{font-weight:700;margin-top:8px}
-.path{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.pill{background:var(--soft);padding:8px 11px;border-radius:10px}
-button.primary{background:var(--blue);color:white;border:0;border-radius:10px;padding:11px 15px;cursor:pointer}
-textarea,input,select{width:100%;font:inherit;border:1px solid var(--line);border-radius:10px;padding:11px;background:white;margin:5px 0 10px}
-label{font-size:14px;font-weight:650}.muted{color:var(--muted);font-size:14px}.hidden{display:none}.result{border-left:4px solid #4c78a8;padding:10px 12px;background:#f0f5fb;margin-top:10px}
-.checks label{display:block;font-weight:400;margin:8px 0}.footer{text-align:center;color:var(--muted);font-size:12px;margin-top:28px}
-@media(max-width:600px){h1{font-size:22px}.card{padding:15px}}
+:root{--bg:#f4f7fb;--card:#fff;--ink:#172033;--muted:#65758b;--blue:#214f82;--blue2:#386f9f;--line:#dbe4ef;--soft:#edf4fb;--gold:#fff7df}
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","PingFang TC",sans-serif;background:var(--bg);color:var(--ink);line-height:1.65}
+header{background:linear-gradient(120deg,#183a66,#3974a8);color:#fff;padding:30px 18px}.wrap{max-width:1050px;margin:auto}.eyebrow{font-size:13px;opacity:.85}h1{font-size:27px;margin:5px 0}.sub{opacity:.92}
+main{padding:0 15px 45px}nav{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}.tab{border:1px solid var(--line);background:#fff;border-radius:999px;padding:10px 15px;font-weight:650}.tab.active{background:var(--blue);color:#fff}
+.panel{display:none}.panel.active{display:block}.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin:12px 0;box-shadow:0 3px 14px #1e293b0a}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(205px,1fr));gap:10px}.week{cursor:pointer;min-height:145px}.week:hover{outline:2px solid #8eafd2}.week.active{outline:2px solid var(--blue);background:#f7fbff}
+small,.muted{color:var(--muted)}h2{font-size:22px;margin:5px 0 12px}h3{font-size:17px;margin:6px 0}.q{font-weight:750;margin-top:8px}.path{display:flex;gap:6px;flex-wrap:wrap;align-items:center}.pill{background:var(--soft);padding:7px 10px;border-radius:10px;font-size:14px}
+button.primary{background:var(--blue);color:white;border:0;border-radius:10px;padding:11px 15px;font-weight:650}button.secondary{background:white;border:1px solid var(--line);border-radius:10px;padding:9px 12px}
+textarea,select,input[type=text]{width:100%;font:inherit;border:1px solid var(--line);border-radius:10px;padding:11px;background:#fff;margin:5px 0 10px}
+.step{border-left:5px solid #6c91b8}.stepno{display:inline-block;background:var(--soft);color:var(--blue);font-weight:800;border-radius:999px;padding:3px 9px;margin-right:6px}.concepts{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px}.concept{background:#f8fafc;border:1px solid var(--line);border-radius:12px;padding:12px}.result{border-left:4px solid #4c78a8;background:#f0f5fb;padding:11px 13px;margin:10px 0}.prof{background:var(--gold);border:1px solid #f0d98d;border-radius:12px;padding:13px}.choice label,.checks label{display:block;margin:8px 0;font-weight:400}.answer{display:none}.answer.show{display:block}.flowline{text-align:center;font-weight:750;color:var(--blue);padding:10px}.lesson-note{font-size:13px;color:var(--muted)}.prompt{font-weight:650;margin:8px 0}.status{color:#255c72;font-size:13px;margin-left:6px}.concept strong{display:block;color:var(--blue);margin-bottom:5px}.concept p{margin:0;color:#45546a;font-size:14px}.panel details{padding:11px;border:1px solid var(--line);border-radius:10px;background:#f7f9fc}.panel summary{cursor:pointer;font-weight:700}.footer{text-align:center;color:var(--muted);font-size:12px;margin-top:30px}
+@media(max-width:600px){h1{font-size:23px}.card{padding:15px}.grid{grid-template-columns:1fr 1fr}.week{min-height:160px}}
 </style></head>
 <body>
-<header><div class="wrap"><div class="eyebrow">研究所課程｜16週互動學習工具</div><h1>引導與反思研究｜承前啟後</h1>
-<div class="sub">提取 Retrieve → 連結 Connect → 挑戰 Challenge → 反思 Reflect → 前探 Preview</div></div></header>
+<header><div class="wrap"><div class="eyebrow">研究所課程｜16週互動學習工具 V2.1</div>
+<h1>引導與反思研究｜承前啟後</h1>
+<div class="sub">回望 Retrieve → 理解 Learn → 連結 Connect → 挑戰 Challenge → 反思 Reflect → 前探 Preview</div></div></header>
 <main class="wrap">
 <nav>
-<button class="tab active" data-tab="map">學習地圖</button>
-<button class="tab" data-tab="student">學生學習</button>
-<button class="tab" data-tab="presenter">報告者助手</button>
-<button class="tab" data-tab="journal">我的學習軌跡</button>
+<button class="tab active" data-tab="map">學習地圖</button><button class="tab" data-tab="learn">本週學習</button>
+<button class="tab" data-tab="presenter">報告者助手</button><button class="tab" data-tab="journal">我的學習軌跡</button>
 </nav>
 
 <section id="map" class="panel active">
-<div class="card"><h2>16週學習地圖</h2><div class="path">
-<span class="pill">理解學習</span>→<span class="pill">設計經驗</span>→<span class="pill">讀懂團體</span>→<span class="pill">專業判斷</span>→<span class="pill">引導實作</span>→<span class="pill">反思深化</span>→<span class="pill">學習遷移</span>→<span class="pill">專業發展</span>
-</div></div><div id="weeks" class="grid"></div>
-<div id="weekInfo" class="card"><h3>使用方式</h3><p>點選週次，先掌握本週核心問題，再進入「學生學習」完成回望、連結、挑戰、反思與前探。</p></div>
+<div class="card"><h2>從「會帶活動」走向「會促進學習」</h2>
+<div class="path"><span class="pill">理解學習</span>→<span class="pill">設計經驗</span>→<span class="pill">讀懂團體</span>→<span class="pill">專業判斷</span>→<span class="pill">引導實作</span>→<span class="pill">反思深化</span>→<span class="pill">學習遷移</span>→<span class="pill">專業發展</span></div>
+<p class="muted">點選任一週，再按「進入本週學習」。16週均提供核心概念解釋、情境挑戰、認知反思及承前啟後任務；輸入內容會自動儲存在此裝置。</p></div>
+<div id="weeks" class="grid"></div>
+<div id="weekInfo" class="card"></div>
 </section>
 
-<section id="student" class="panel">
-<div class="card"><h2>學生學習模式</h2><label>選擇週次</label><select id="studentWeek"></select><div id="studentContent"></div></div>
-</section>
+<section id="learn" class="panel"><div class="card"><label>選擇週次</label><select id="learnWeek"></select></div><div id="lesson"></div></section>
 
 <section id="presenter" class="panel">
-<div class="card"><h2>本週報告者｜導讀整理助手</h2><p class="muted">目的不是替你寫完報告，而是協助把指定閱讀整理成「可理解、可討論、可體驗」的導讀。</p>
-<label>選擇負責週次</label><select id="presenterWeek"></select><div id="presenterPrompt" class="result"></div></div>
-<div class="card">
-<label>1. 本週核心問題</label><textarea data-save="p1" placeholder="這一週真正要回答什麼問題？"></textarea>
-<label>2. 三個核心概念</label><textarea data-save="p2" placeholder="列出3個最重要概念，避免整章摘要。"></textarea>
-<label>3. 理論關係圖（文字版）</label><textarea data-save="p3" placeholder="例如：觀察 → 判斷 → 介入 → 再觀察"></textarea>
-<label>4. 實務案例</label><textarea data-save="p4" placeholder="這個理論在引導現場如何出現？"></textarea>
-<label>5. 體驗活動</label><textarea data-save="p5" placeholder="如何讓同學先經驗，再理解概念？"></textarea>
-<label>6. 三個討論問題</label><textarea data-save="p6" placeholder="理解 → 分析 → 評鑑／創造"></textarea>
-<button class="primary" id="savePresenter">儲存本週整理</button><div id="saveMsg" class="muted"></div>
-</div>
-<div class="card checks"><h3>報告完成度檢查</h3>
-<label><input type="checkbox"> 說清楚本週核心問題</label><label><input type="checkbox"> 聚焦3–5個核心概念</label>
-<label><input type="checkbox"> 說明概念彼此關係</label><label><input type="checkbox"> 連回前一週</label>
-<label><input type="checkbox"> 有實際引導情境</label><label><input type="checkbox"> 有體驗或案例</label>
-<label><input type="checkbox"> 有高層次思考問題</label><label><input type="checkbox"> 留下通往下一週的問題</label>
-</div>
+<div class="card"><h2>本週報告者｜導讀整理助手</h2><label>選擇負責週次</label><select id="presenterWeek"></select><div id="presenterGuide"></div></div>
+<div class="card"><label>1. 本週核心問題</label><textarea data-p="1"></textarea>
+<label>2. 三至五個核心概念</label><textarea data-p="2"></textarea><label>3. 理論關係</label><textarea data-p="3"></textarea>
+<label>4. 實務案例</label><textarea data-p="4"></textarea><label>5. 體驗活動</label><textarea data-p="5"></textarea>
+<label>6. 三個討論問題（理解→分析→評鑑／創造）</label><textarea data-p="6"></textarea>
+<button id="savePresenter" class="primary">儲存本週整理</button> <button id="fillPresenter" class="secondary">帶入本週導讀範本（不覆蓋既有回答）</button><span id="saveMsg" class="muted"></span></div>
+<div class="card checks"><h3>完成度檢查</h3>
+<label><input type="checkbox"> 核心問題清楚</label><label><input type="checkbox"> 聚焦3–5個核心概念</label>
+<label><input type="checkbox"> 說明概念關係</label><label><input type="checkbox"> 明確承接前週</label>
+<label><input type="checkbox"> 有真實引導情境或案例</label><label><input type="checkbox"> 有體驗活動</label>
+<label><input type="checkbox"> 有高層次討論問題</label><label><input type="checkbox"> 留下通往下一週的問題</label></div>
 </section>
 
 <section id="journal" class="panel">
-<div class="card"><h2>我的學習軌跡</h2><p>每週只留下最重要的一句話，到第16週回看自己的引導觀如何改變。</p>
-<label>週次</label><select id="journalWeek"></select><label>這一週，我對引導最大的改變是……</label>
-<textarea id="journalText"></textarea><button class="primary" id="saveJournal">儲存反思</button></div>
-<div id="journalList"></div>
+<div class="card"><h2>我的學習軌跡</h2><p>每週留下一句：「這一週，我對引導最大的改變是……」</p>
+<label>週次</label><select id="journalWeek"></select><textarea id="journalText"></textarea><button id="saveJournal" class="primary">儲存反思</button> <button id="exportRecords" class="secondary">匯出個人學習紀錄</button> <span id="journalStatus" class="muted"></span></div><div id="journalList"></div>
 </section>
-<div class="footer">引導與反思研究｜承前啟後學習 App · v2.0</div>
+<div class="footer">引導與反思研究｜承前啟後學習 App V2.1 · 學習紀錄儲存在本機瀏覽器</div>
 </main>
-<script>
-const W=[
-["經驗、反思與遷移","經驗如何成為學習？"],["冒險教育模型與發展","學習如何逐步發展？"],
-["經驗學習：挑戰與選擇","什麼是適切的挑戰？"],["方案規劃與活動設計","如何有意圖地設計經驗？"],
-["團體動力及引導者角色","團體現在發生什麼？"],["適應性領導與引導倫理","何時介入？界線在哪裡？"],
-["團體評估與活動序列","團體下一步需要什麼？"],["團體建立：契約與目標設定","如何建立共同承諾與目標？"],
-["活動前引導：框架與安全","活動開始前如何建立框架？"],["引導技術與活動實作","活動進行中如何引導？"],
-["反思架構與經驗意義化","經驗之後如何產生意義？"],["反思提問與學習遷移","如何用問題促進遷移？"],
-["反思品質與多元學習者","不同學習者如何反思？"],["引導介入與學生實作 I","什麼時候應該介入？"],
-["風險、安全與學生實作 II","如何兼顧學習與安全？"],["課程評量、專業發展與統整","我成為怎樣的引導者？"]
+<script>const W=[
+{t:"經驗、反思與遷移",q:"經驗如何成為學習？",c:["Experience 經驗","Observe 察覺","Reflect 反思","Meaning 意義建構","Apply 應用"],back:"先從自己的活動經驗出發：完成一個活動，是否就代表已經學會？",link:"Experience → Observe → Reflect → Meaning → Apply",case:"你參加一個合作活動，活動結束時很開心，但說不出自己學到了什麼。這算學習嗎？",reflect:["經驗與學習有什麼不同？","反思如何改變一段經驗的意義？","如果你是引導者，會如何讓經驗繼續發生學習？"],next:"不同學習者面對同一經驗，會產生相同的學習嗎？",prof:"不要急著教反思技巧，先建立核心判斷：Experience ≠ Learning。"},
+{t:"冒險教育模型與發展",q:"學習如何逐步發展？",c:["先備經驗","能力","動機","情緒","需求","團體關係"],back:"第1週知道經驗不會自動變成學習；本週進一步問：是誰正在經驗？",link:"學習者狀態 → 經驗 → 挑戰 → 反思 → 發展",case:"同一個挑戰活動，A覺得興奮、B覺得害怕、C覺得無聊。為什麼同一活動產生不同經驗？",reflect:["哪些個人因素影響學習？","Same Activity 為什麼不等於 Same Experience？","如果三位學習者需求不同，你會如何調整？"],next:"既然學習者不同，我們應該給每個人多大的挑戰？",prof:"重點不是背模型，而是理解學習發展必須從學習者當下狀態出發。"},
+{t:"經驗學習：挑戰與選擇",q:"什麼是適切的挑戰？",c:["Comfort Zone","Growth / Learning Zone","Panic / Overload Zone","Challenge by Choice","支持與自主"],back:"第2週知道同一活動對不同學習者可能完全不同；因此挑戰也不能一體適用。",link:"學習者狀態 × 挑戰程度 × 支持 × 選擇 → 成長機會",case:"學生拒絕蒙眼活動。引導者應鼓勵他『突破舒適圈』，還是接受其選擇？",reflect:["三種挑戰區域有何差異？","為何挑戰不是越高越好？","如何設計既有挑戰又保留自主性的替代方案？"],next:"如果適切挑戰因人而異，引導者如何事先設計活動？",prof:"避免把『走出舒適圈』當成強迫參與的理由；Challenge by Choice 必須有真實選擇。"},
+{t:"方案規劃與活動設計",q:"如何有意圖地設計經驗？",c:["Purpose","Goal","Activity","Intentional Sequencing","Do–Reflect–Apply","Next Experience"],back:"前三週站在學習者角度理解學習；本週轉到引導者／設計者角度。",link:"Purpose → Goal → Activity → Experience → Observe → Reflect → Need → Next Experience ↺",case:"「修復計算機」第一輪以速度為目標；第二輪部分成員蒙眼並改以準確為目標。為什麼只是改變成功標準，團體互動就會改變？",reflect:["兩輪活動的目標、規則與互動有何差異？","為什麼先速度、再準確？若順序對調會如何？","若第三輪要促進共享領導，你會如何重新設計？"],next:"方案設計得很好，團體真的會按照我們預期的方式發展嗎？",prof:"意圖性序列不是『簡單→困難』，而是前一經驗產生了什麼，因此下一經驗應該是什麼。"},
+{t:"團體動力及引導者角色",q:"團體現在發生什麼？",c:["Group Dynamics","Content vs. Process","Group Roles","Facilitator Role","Intervention"],back:"第4週學會設計經驗；活動開始後，引導者必須從『設計』轉向『讀懂正在發生的歷程』。",link:"Experience → Observe → Interpret → Decide → Intervene / Wait → Observe Again",case:"六人完成問題解決任務：2人主導、1人否定、1人沉默、2人配合，最後任務成功。這是一個成功的團體嗎？",reflect:["什麼是團體動力？","Task Outcome 與 Group Process 有何差異？","如果你是引導者，現在應不應介入？依據是什麼？"],next:"看到團體問題，引導者就應該立即介入嗎？",prof:"不要只介紹團體發展理論。要回答：引導者如何從行為判斷『現在發生什麼』，以及這如何影響下一個決策。"},
+{t:"適應性領導與引導倫理",q:"何時介入？界線在哪裡？",c:["Adaptive Leadership","Stakeholder Objectives","Intervention Spectrum","Ethics","Professional Responsibility"],back:"第5週先學會看見團體歷程；本週處理更困難的問題：看見之後，要不要做什麼？",link:"判斷需求 → 調整引導 → 檢查倫理界線 → 介入／等待 → 再觀察",case:"A 有人拒絕參與；B 能力最強者控制所有決策；C 團體很挫折但仍能自行解決。三種情境你會選擇等待、提問、提示、調整、直接指導或停止？",reflect:["適應性領導到底在『適應』什麼？","有效的介入一定是倫理上適切的介入嗎？","你會如何說明『介入到什麼程度』的專業依據？"],next:"即使決定介入，我們如何知道團體下一步真正需要什麼？",prof:"不要把適應性領導與倫理拆成兩份報告；用同一情境回答：要不要介入、如何介入、介入到什麼程度、為什麼。"},
+{t:"團體評估與活動序列",q:"團體下一步需要什麼？",c:["The Process","Adventure Wave Theory","Assessing the Group","Five Second Scan","Dynamic Sequencing"],back:"第6週學會在情境中調整並守住界線；本週把判斷轉成『下一個經驗』。",link:"觀察團體 → 快速評估 → 判斷需求 → 選擇下一個經驗 → 再觀察 ↺",case:"原定下一個活動需要高度合作，但你觀察到團體剛發生衝突、信任下降。你會照原計畫，還是改變序列？你需要哪些證據？",reflect:["Five Second Scan 可以看哪些線索？","活動序列為什麼必須動態調整？","如何避免『憑感覺』調整，而形成有依據的專業判斷？"],next:"當團體需要共同承諾時，如何建立可持續的規範與目標？",prof:"把第4–7週串成一個循環：設計經驗 → 讀懂團體 → 調整引導 → 動態決定下一步。"},
+{t:"團體建立：契約與目標設定",q:"如何建立共同承諾與目標？",c:["Lead-Up Activities","Full Value Contract","Goal Setting","共同規範","參與責任"],back:"第7週會根據團體狀態決定下一步；本週處理團體如何建立共同工作的基礎。",link:"前導活動 → 共同約定 → 目標設定 → 持續實踐與回看",case:"團體一開始答應彼此尊重，但活動中仍頻繁打斷與嘲諷。FVC 是一張契約，還是一個持續被實踐的歷程？",reflect:["FVC 的功能是什麼？","目標如何影響活動選擇？","如何讓團體對規範具有真正所有權？"],next:"共同約定建立後，活動開始前還需要如何框架與說明？",prof:"避免把 FVC 變成口號；關鍵是共同建構、可觀察行為與持續回看。"},
+{t:"活動前引導：框架與安全",q:"活動開始前如何建立框架？",c:["The Brief","Framing","Directives","Briefing for Safety","心理與身體安全"],back:"第8週建立共同規範與目標；本週把它轉化成活動開始前的清楚框架。",link:"目標 → 框架 → 指令 → 安全界線 → 行動",case:"同一個活動，用『競賽』或『共同探索』來框架，可能造成哪些不同互動？",reflect:["Framing 如何影響參與者理解？","安全說明與過度控制的界線在哪？","你會如何設計一段簡潔有效的 Brief？"],next:"活動真正開始後，引導者如何在不搶走學習的情況下提供支持？",prof:"Brief 不是把所有答案說完，而是建立足夠清楚、安全且有學習空間的起點。"},
+{t:"引導技術與活動實作",q:"活動進行中如何引導？",c:["Additional Briefing","Altering Directives","Constraints","Using Disabilities","Facilitator Presence"],back:"第9週建立活動前框架；本週進入活動進行中的即時引導。",link:"觀察 → 微調條件 → 保留自主 → 支持學習 → 再觀察",case:"團體卡住三分鐘。你可以給答案、給提示、改規則，或什麼都不做。哪一種最有助於學習？",reflect:["什麼是最小必要介入？","改變限制條件如何改變學習？","如何判斷何時提示、何時等待？"],next:"活動結束後，經驗如何被轉化成有意義的學習？",prof:"技術不是越多越好；引導技術的價值取決於它是否服務當下學習需要。"},
+{t:"反思架構與經驗意義化",q:"經驗之後如何產生意義？",c:["Debrief","What?","So What?","Now What?","Meaning Making"],back:"第10週處理活動中的引導；本週把注意力轉到活動之後。",link:"Experience → What? → So What? → Now What? → New Action",case:"活動成功但團體只說『很好玩』。你會如何讓反思從描述走向意義？",reflect:["What/So What/Now What 各自處理什麼？","什麼情況下不需要長時間口頭反思？","如何避免引導者替學生說出『標準答案』？"],next:"如何用問題把反思推向更深層思考與生活遷移？",prof:"反思不是活動後固定問三題，而是協助學習者建構意義。"},
+{t:"反思提問與學習遷移",q:"如何用問題促進遷移？",c:["Processing Questions","Transfer","Bloom","理解→分析→評鑑→創造","New Context"],back:"第11週建立反思架構；本週聚焦『問題如何改變思考深度』。",link:"描述經驗 → 分析關係 → 評鑑策略 → 創造新行動 → 遷移",case:"把『你們合作得好不好？』改寫成能促進分析、評鑑與創造的三個問題。",reflect:["開放式問題一定是好問題嗎？","問題如何對應認知層次？","如何把活動策略帶到真實生活情境？"],next:"不同學習者都適合同一種反思方式嗎？",prof:"好問題的判準不是『開放』而已，而是它把學習者的思考帶到哪裡。"},
+{t:"反思品質與多元學習者",q:"不同學習者如何反思？",c:["Debriefing Tips","Learning Styles","多元表達","心理安全","反思節奏"],back:"第12週關注提問深度；本週加入學習者差異與反思形式。",link:"學習者差異 → 反思形式選擇 → 意義表達 → 遷移",case:"有人喜歡說、有人需要寫、有人需要先畫圖。只用全班口頭分享會失去什麼？",reflect:["反思品質如何判斷？","如何提供多元表達管道？","何時應該讓沉默存在？"],next:"面對真實團體歷程，引導者如何把前面所學轉成即時介入？",prof:"不要把多元學習者簡化成固定類型；重點是提供多種進入反思的途徑。"},
+{t:"引導介入與學生實作 I",q:"什麼時候應該介入？",c:["Leader Interventions","Timing","Minimum Necessary Intervention","Observation","Professional Judgment"],back:"前13週已建立設計、觀察、判斷與反思基礎；本週進入學生實作。",link:"觀察 → 判斷 → 介入／等待 → 觀察效果 → 修正",case:"學生帶領30分鐘活動時，團體出現沉默、衝突或偏離目標。帶領者如何決定是否介入？",reflect:["介入的依據是什麼？","你的介入改變了什麼？","若重來一次會保留或改變什麼？"],next:"介入決策如何同時兼顧學習、風險與安全？",prof:"實作評量重點不是活動順不順，而是能否說明自己的觀察、判斷與介入依據。"},
+{t:"風險、安全與學生實作 II",q:"如何兼顧學習與安全？",c:["Risk Management","Program Safety","Prevention","Course Corrections","Learning vs. Safety"],back:"第14週練習介入；本週把風險與安全納入同一決策系統。",link:"風險辨識 → 判斷 → 預防／修正 → 保留學習價值 → 再評估",case:"一個高挑戰活動很有學習價值，但團體疲勞、環境改變。你會如何修正而不是只做『繼續／取消』二選一？",reflect:["安全與學習是否一定衝突？","什麼是可接受風險？","如何做 Course Correction？"],next:"經過16週，我的引導專業究竟發生了什麼改變？",prof:"安全不是課程外加的限制，而是專業判斷的一部分。"},
+{t:"課程評量、專業發展與統整",q:"我成為怎樣的引導者？",c:["Program Evaluation","Professional Development","Metacognition","Facilitator Identity","Continuous Learning"],back:"回看第1週到第15週：從『經驗如何成為學習』走到『我如何專業地促進學習』。",link:"Design → Observe → Interpret → Decide → Facilitate → Reflect → Redesign ↺",case:"請比較第1週與現在：你對『引導』的定義有什麼改變？請用一個真實課堂片段支持。",reflect:["你現在如何定義引導？","你的專業判斷最明顯成長在哪裡？","下一階段你最需要持續發展什麼能力？"],next:"把課程中的判斷循環帶入未來的教學、戶外領導與研究。",prof:"期末不是總結名詞，而是呈現自己的引導觀如何改變，以及改變的證據。"}
 ];
-const key=["經驗不等於學習；經驗需經察覺、反思、意義建構與應用。","同一活動對不同學習者可能產生不同學習。","挑戰不是越高越好；支持與自主選擇是關鍵。","先有目的，再有活動；序列服務學習目標與團體狀態。","任務成果不等於團體歷程；引導者要讀懂互動。","介入不只問有效，也要問適切、倫理與界線。","觀察→快速評估→判斷需求→選擇下一經驗→再觀察。"];
-const weeks=document.querySelector("#weeks");
-W.forEach((w,i)=>{let d=document.createElement("div");d.className="card week";d.innerHTML=`<small>第${i+1}週</small><h3>${w[0]}</h3><div class="q">${w[1]}</div>`;d.onclick=()=>document.querySelector("#weekInfo").innerHTML=`<small>第${i+1}週</small><h2>${w[0]}</h2><p><b>核心問題：</b>${w[1]}</p><p>${key[i]||"本週請從指定閱讀、課堂案例與前週問題建立連結。"}</p>`;weeks.appendChild(d)});
-function opts(sel){W.forEach((w,i)=>sel.add(new Option(`第${i+1}週｜${w[0]}`,i)))}
-opts(studentWeek);opts(presenterWeek);opts(journalWeek);
-document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab,.panel").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.querySelector("#"+b.dataset.tab).classList.add("active")});
-function renderStudent(){
- let i=+studentWeek.value,w=W[i],prev=i?W[i-1][1]:"你認為「經驗」本身就等於「學習」嗎？",next=i<15?W[i+1][1]:"如何把16週的學習轉化為自己的專業實踐？";
- studentContent.innerHTML=`<div class="card"><h3>① 回望 Retrieve</h3><p>${prev}</p></div>
- <div class="card"><h3>② 連結 Connect</h3><p>前一週的概念，如何幫助你回答：<b>${w[1]}</b></p></div>
- <div class="card"><h3>③ 挑戰 Challenge</h3><p>請提出一個真實引導情境，指出其中最需要判斷的問題。</p><textarea placeholder="我的情境與判斷……"></textarea></div>
- <div class="card"><h3>④ 反思 Reflect</h3><p><b>理解：</b>今天最重要的概念是什麼？</p><p><b>分析：</b>哪些因素彼此影響？</p><p><b>評鑑／創造：</b>如果再做一次，你會如何調整？</p></div>
- <div class="card"><h3>⑤ 前探 Preview</h3><p>下一個尚未解決的問題：</p><div class="result"><b>${next}</b></div></div>`;
+
+const DESCRIPTIONS=[["參與者實際發生的事件、行動與感受；經驗本身不等於學習。", "注意到經驗中的行為、情緒、選擇及其變化，為反思提供素材。", "回看經驗，探索事件與行動之間的關係，而不只敘述結果。", "把具體事件與自身價值、理解及既有知識連結，形成解釋。", "將理解轉化為下一次可實踐的行動，並檢驗效果。"], ["學習者先前的成功、失敗與知識，影響他如何理解新經驗。", "當下能做到什麼，以及需要多少支援；不是固定的個人標籤。", "參與者願不願意投入，以及活動對他是否具有意義。", "興奮、焦慮、無聊等情緒會影響注意、行動與學習。", "包含學習者希望獲得的成長、支持和個別調整。", "歸屬感、信任與角色位置會改變同一活動的經驗品質。"], ["熟悉且較少不確定性的狀態；並非一律沒有學習。", "挑戰與能力、支持相互匹配，學習者有機會嘗試與調整。", "負荷超出當下因應資源，可能使投入、判斷與學習下降。", "允許學習者選擇挑戰程度或替代角色，拒絕也應受到尊重。", "清楚安全界線、提供必要支持與真實選擇，使挑戰不流於強迫。"], ["方案為什麼存在、希望服務的教育價值與需求。", "具體希望學習者產生什麼變化，以及有哪些可觀察的證據。", "創造經驗的媒介；活動不是最終學習目的。", "以目標和團體準備程度有意圖安排經驗，而不是只按難度排序。", "活動後立即整理，再把一項策略帶入下一輪實作與驗證。", "根據本輪觀察與反思，重新判斷下一個經驗需要什麼。"], ["成員之間持續互相影響的溝通、角色、權力、情緒與規範歷程。", "Content看任務做什麼；Process看團體如何共同做出決策與合作。", "領導、支持、質疑、沉默等角色會因任務和情境而流動。", "引導者創造參與、理解、選擇與反思條件，而非代替團體解答。", "在觀察與判斷後，選擇等待、提問、調整、指導或停止活動。"], ["依參與者、團體、任務與環境的改變調整引導方式。", "釐清學生、委託單位、教師與其他利害關係人的目標是否一致。", "從等待、提問、提示、調整條件到直接指導或停止，依需要採用。", "檢查自主、尊重、同意、權力、安全與公平，而不只看是否有效。", "能說明介入的依據、限度與後果，並對判斷負責。"], ["將活動視為持續推進的歷程，連結現場資訊與下一步決策。", "關注活動投入與張力的起伏，安排需要的收束、反思或再挑戰。", "根據可觀察行為評估參與、支持、溝通及問題解決能力。", "短時間掃描團體的安全、情緒、參與與互動線索，形成初步判斷。", "以團體的實際反應調整活動順序、難度與支持，而非照表執行。"], ["用低門檻前導任務建立互動與下一個任務所需的能力。", "由團體共同建立並持續實踐的尊重、參與與安全承諾。", "把希望產生的學習與可觀察行動說清楚。", "共同理解什麼行為能支持每位成員參與，而非只有口號。", "團體成員共同對安全、合作與學習負責。"], ["活動前的說明與預備，讓學習者知道目標、界線與如何開始。", "以語境、故事或問題設定經驗的意義；框架會影響團體行為。", "足夠清楚的步驟與限制，避免模糊但保留探索空間。", "說明身體與心理風險、停止訊號、支持方法與退出選項。", "將必要安全條件嵌入活動設計，不以高壓取代支持。"], ["透過補充簡報回應誤解或團體需要，而不是重講全部內容。", "改變規則、資訊或任務限制，創造不同的學習條件。", "限制條件改變策略與互動，也是活動設計可調整的變項。", "可使用不同角色或感官限制，但須尊重同意、可選擇性與安全。", "引導者在場時的觀察、支持與適切介入，避免搶走團體學習。"], ["活動後整理經驗，使參與者能命名所見、理解意義與形成行動。", "描述事實與感受：剛才發生了什麼？", "分析關係與意義：為什麼重要？我看到了什麼模式？", "決定行動與遷移：下一次我要如何做？", "參與者自己建構對經驗的理解，不由引導者提供標準答案。"], ["根據具體學習目標設計由淺入深、能引發思考的反思問題。", "把學習帶到新的活動、課程、團體或真實生活脈絡。", "以理解、應用、分析、評鑑與創造等不同認知歷程設計提問。", "從描述經驗轉為分析關係、提出判斷並重新設計行動。", "確定改變要在何種真實情境使用，並提出可觀察的實踐方法。"], ["留意提問時機、順序、說話比例與尊重沉默的技巧。", "可採口說、書寫、圖像、同儕對談等形式，不應將人固定分型。", "允許用不同方式表達尚未整理好的經驗。", "讓參與者能自主決定揭露程度，不以反思之名要求公開私事。", "給予思考時間與適切收束，不讓反思變成急促回答。"], ["引導者基於團體狀態選擇介入方式；每次介入應有目的。", "觀察到什麼時候介入最有利於學習和安全。", "盡量保留團體自行探索與決策的空間，必要時才提高介入。", "以具體行為而非個人印象作為判斷依據。", "能解釋為何介入、如何介入以及介入後的效果。"], ["預先辨識危害與後果，採取合理控制與持續檢視措施。", "建立活動安全安排、應變準備與必要的預防措施。", "從場地、器材、人員狀態與情境變化降低可避免的風險。", "現場重新評估後調整程序、任務或目標，以維持安全與學習。", "在可接受風險與學習機會間做有依據的專業選擇。"], ["收集學習證據，回看目標、歷程與結果是否一致。", "透過實作、回饋與研究持續精進，而非只累積帶領次數。", "反思自己如何觀察、判斷與學習，辨識盲點及下一步。", "逐步形成『我如何理解引導、我依什麼做決策』的專業觀。", "設計、觀察、行動、回饋與調整形成持續改進循環。"]];
+const CUES=["請先區分「做過」與「學到」。回想學生能否指出具體行為、形成解釋並提出下一步應用。", "先找出能力、動機與先備經驗的差異，不要假定同一任務對每個人都有相同難度。", "判斷必須包含安全、真實選擇和替代參與方式。拒絕不等於學習失敗。", "請比較目標改變、規則限制、角色分配、團體互動與反思策略是否真正連接。", "先拆開任務結果與團體歷程。觀察誰主導、誰沉默、誰的意見被採納，而非只看完成速度。", "分別考慮自主選擇、公平參與與安全界線；有效性和倫理適切性都要檢查。", "你需要的是具體行為證據；可先用短時間掃描，再判斷是否需要改變原訂活動序列。", "觀察共識是否轉化成具體行為，例如傾聽、求助、不同意見與停止訊號。", "比較活動框架對參與者期待與動機的影響，清楚交代必要安全界線。", "衡量團體還能不能自主探索；提示、調整規則與等待都是可能的引導行動。", "先用 What? 取得共同事實，再用 So What? 理解意義，最後回到 Now What?。", "請將簡單感受題改成有證據的分析題、需要理由的評鑑題與可操作的創造題。", "比較口語、書寫、圖像及小組對談的參與門檻，尊重不同表達節奏。", "將觀察和介入決策分開記錄：看到什麼？為何如此判斷？後續發生什麼？", "先重新評估人員、器材與環境，再決定調整、降低難度或停止，並說明理由。", "運用真實案例與16週累積反思作為「觀點改變」的證據，而不是只回顧課名。"];
+const $=id=>document.getElementById(id);
+const store={
+  get(k){try{return localStorage.getItem(k)}catch(e){return null}},
+  set(k,v){try{localStorage.setItem(k,v);return true}catch(e){return false}},
+  all(){let o={};try{for(let i=0;i<localStorage.length;i++){let k=localStorage.key(i);if(k&&(/^(lesson-|presenter-|journal-|ui-)/).test(k))o[k]=localStorage.getItem(k)}}catch(e){}return o}
+};
+const esc=s=>String(s).replace(/[&<>"']/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
+function fillOptions(el){W.forEach((w,i)=>el.add(new Option(`第${i+1}週｜${w.t}`,String(i))))}
+['learnWeek','presenterWeek','journalWeek'].forEach(id=>fillOptions($(id)));
+function tab(id){document.querySelectorAll('.tab,.panel').forEach(e=>e.classList.remove('active'));document.querySelector(`.tab[data-tab="${id}"]`).classList.add('active');$(id).classList.add('active')}
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>tab(b.dataset.tab)));
+const grid=$('weeks');
+W.forEach((w,i)=>{
+  const d=document.createElement('div');d.className='card week';d.tabIndex=0;d.setAttribute('role','button');
+  d.innerHTML=`<small>第${i+1}週</small><h3>${esc(w.t)}</h3><div class="q">${esc(w.q)}</div>`;
+  d.addEventListener('click',()=>showWeek(i));d.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();showWeek(i)}});grid.appendChild(d)
+});
+function showWeek(i){
+  document.querySelectorAll('.week').forEach((x,j)=>x.classList.toggle('active',j===i));
+  const w=W[i];$('weekInfo').innerHTML=`<small>第${i+1}週</small><h2>${esc(w.t)}</h2><p><b>核心問題：</b>${esc(w.q)}</p><p><b>承前：</b>${esc(w.back)}</p><p><b>概念主線：</b>${esc(w.link)}</p><button class="primary" id="enterWeek">進入本週學習 →</button>`;
+  $('enterWeek').addEventListener('click',()=>goLearn(i));
 }
-studentWeek.onchange=renderStudent;renderStudent();
-function presenter(){
- let i=+presenterWeek.value;
- presenterPrompt.innerHTML=`<b>第${i+1}週核心問題：</b>${W[i][1]}<br><span class="muted">整理時請回答：這一週如何承接前週，又留下什麼問題給下一週？</span>`;
- ["p1","p2","p3","p4","p5","p6"].forEach(k=>{let el=document.querySelector(`[data-save="${k}"]`);el.value=localStorage.getItem(`presenter-${i}-${k}`)||""});
+function goLearn(i){$('learnWeek').value=String(i);renderLesson();tab('learn');window.scrollTo({top:0,behavior:'smooth'})}
+function answers(i){
+ let p=i?W[i-1]:null;
+ return p?[
+ `上週核心問題「${p.q}」你會如何回答？`,
+ `不看提示，寫出上週至少兩個概念，並解釋其中一個。`,
+ `上週哪一個學習發現，可以用來理解這週的問題「${W[i].q}」？`
+ ]:[
+ `回想一段你曾經參加或帶領的體驗活動。當時發生了什麼？`,
+ `你在活動當下的感受與事後的理解，有何不同？`,
+ `你曾把哪一項活動發現用到其他生活情境？`
+ ];
 }
-presenterWeek.onchange=presenter;presenter();
-savePresenter.onclick=()=>{let i=+presenterWeek.value;document.querySelectorAll("[data-save]").forEach(el=>localStorage.setItem(`presenter-${i}-${el.dataset.save}`,el.value));saveMsg.textContent="已儲存在這台裝置。"};
-saveJournal.onclick=()=>{localStorage.setItem("journal-"+journalWeek.value,journalText.value);renderJournal()};
-function renderJournal(){journalList.innerHTML="";W.forEach((w,i)=>{let t=localStorage.getItem("journal-"+i);if(t){let d=document.createElement("div");d.className="card";d.innerHTML=`<small>第${i+1}週｜${w[0]}</small><p>${t}</p>`;journalList.appendChild(d)}})}
-journalWeek.onchange=()=>journalText.value=localStorage.getItem("journal-"+journalWeek.value)||"";journalWeek.onchange();renderJournal();
+function renderLesson(){
+  const i=Number($('learnWeek').value),w=W[i],prev=i?W[i-1]:null;
+  store.set('ui-week',String(i));
+  const recall=answers(i).map((q,k)=>`<label class="prompt" for="r${k}">${k+1}. ${esc(q)}</label><textarea id="r${k}" data-weeknote="${i}-recall${k+1}" rows="2" placeholder="先回憶再查看提示"></textarea>`).join('');
+  const conceptHtml=w.c.map((c,j)=>`<div class="concept"><strong>${esc(c)}</strong><p>${esc(DESCRIPTIONS[i][j]||'')}</p></div>`).join('');
+  const reflect=[w.reflect[0],w.reflect[1],`根據這個情境，什麼判斷或策略更適切？你會以哪些觀察作為證據？`,w.reflect[2]];
+  const labels=['理解 Understand','分析 Analyze','評鑑 Evaluate','創造 Create'];
+  const refl=reflect.map((q,k)=>`<label class="prompt" for="f${k}"><b>${labels[k]}：</b>${esc(q)}</label><textarea id="f${k}" data-weeknote="${i}-r${k<2?k+1:k===2?'eval':'3'}" rows="2" placeholder="用本週概念與活動證據回答"></textarea>`).join('');
+  $('lesson').innerHTML=`
+  <div class="card"><small>第${i+1}週</small><h2>${esc(w.t)}</h2><div class="q">${esc(w.q)}</div><div class="flowline">${esc(w.link)}</div></div>
+  <div class="card step"><h3><span class="stepno">① 回望 Retrieve</span></h3><p>${esc(w.back)}</p>${recall}
+  <details><summary>完成回憶後，查看前週核心概念</summary><p>${prev?prev.c.map(x=>esc(x)).join('、'):'經驗、察覺、反思、意義、應用'}</p></details></div>
+  <div class="card step"><h3><span class="stepno">② 理解 Learn</span> 本週核心概念與解釋</h3><div class="concepts">${conceptHtml}</div></div>
+  <div class="card step"><h3><span class="stepno">③ 連結 Connect</span></h3><p>${esc(w.link)}</p><label class="prompt">前一週的學習如何幫助你理解本週？</label><textarea data-weeknote="${i}-connect" rows="3" placeholder="請用自己的話寫出跨週連結"></textarea></div>
+  <div class="card step"><h3><span class="stepno">④ 挑戰 Challenge</span> 情境判斷</h3><p>${esc(w.case)}</p><label class="prompt">你會如何判斷、怎麼做？請先說明依據。</label><textarea data-weeknote="${i}-case" rows="3" placeholder="先寫下你的判斷，才查看線索"></textarea>
+  <details><summary>查看引導線索（先寫自己的判斷）</summary><p>${esc(CUES[i])}</p></details></div>
+  <div class="card step"><h3><span class="stepno">⑤ 反思 Reflect</span> 認知深化</h3>${refl}</div>
+  <div class="card step"><h3><span class="stepno">⑥ 前探 Preview</span></h3><div class="result"><b>${esc(w.next)}</b></div><p class="muted">下一週開始前，先把這個疑問保留下來。</p></div>
+  <div class="card"><details><summary>教授提示（供課後延伸）</summary><p>${esc(w.prof)}</p></details></div>
+  <div class="card"><button class="primary" id="saveLesson">儲存／確認本週回答</button><span class="status" id="lessonSave">輸入時自動儲存於本裝置</span><p class="lesson-note">切換週次或重新開啟網站仍會保留已儲存內容；更換裝置或清除瀏覽器資料則可能遺失，建議定期於「我的學習軌跡」匯出備份。</p></div>`;
+  document.querySelectorAll('[data-weeknote]').forEach(el=>{
+    el.value=store.get('lesson-'+el.dataset.weeknote)||'';
+    el.addEventListener('input',()=>{const ok=store.set('lesson-'+el.dataset.weeknote,el.value);$('lessonSave').textContent=ok?'已自動儲存':'本機儲存受限制，請複製備份'});
+  });
+  $('saveLesson').onclick=()=>{
+    let ok=true;document.querySelectorAll('[data-weeknote]').forEach(el=>{if(!store.set('lesson-'+el.dataset.weeknote,el.value))ok=false});
+    $('lessonSave').textContent=ok?'本週回答已儲存':'無法儲存，請檢查瀏覽器設定';
+  };
+}
+$('learnWeek').addEventListener('change',renderLesson);
+const previousWeek=Number(store.get('ui-week'));
+if(Number.isInteger(previousWeek)&&previousWeek>=0&&previousWeek<16)$('learnWeek').value=String(previousWeek);
+renderLesson();showWeek(Number($('learnWeek').value));
+function presenterTemplate(i){const w=W[i];return [w.q,w.c.slice(0,5).map((v,j)=>`${j+1}. ${v}：${DESCRIPTIONS[i][j]}`).join('\n'),w.link,w.case,`用一段5–10分鐘的小型活動，觀察：${w.c.slice(0,3).join('、')}。完成後請學生舉出觀察證據。`,w.reflect.map((v,j)=>`${j+1}. ${v}`).join('\n')];}
+function renderPresenter(){
+ const i=Number($('presenterWeek').value),w=W[i];store.set('ui-presenter',String(i));
+ $('presenterGuide').innerHTML=`<div class="result"><b>核心問題：</b>${esc(w.q)}<p><b>主要概念：</b>${w.c.map(esc).join('、')}</p><b>概念關係：</b>${esc(w.link)}</div><div class="prof"><b>教授提醒：</b>${esc(w.prof)}</div><p><b>前週連結：</b>${esc(w.back)}</p><p><b>實務案例方向：</b>${esc(w.case)}</p><p><b>下週懸念：</b>${esc(w.next)}</p>`;
+ document.querySelectorAll('[data-p]').forEach(el=>{el.value=store.get(`presenter-${i}-${el.dataset.p}`)||'';el.oninput=()=>{$('saveMsg').textContent=store.set(`presenter-${i}-${el.dataset.p}`,el.value)?' 已自動儲存':' 本機儲存失敗'}})
+}
+$('presenterWeek').addEventListener('change',renderPresenter);
+const pw=Number(store.get('ui-presenter'));if(Number.isInteger(pw)&&pw>=0&&pw<16)$('presenterWeek').value=String(pw);
+renderPresenter();
+$('savePresenter').onclick=()=>{const i=Number($('presenterWeek').value);let ok=true;document.querySelectorAll('[data-p]').forEach(el=>{if(!store.set(`presenter-${i}-${el.dataset.p}`,el.value))ok=false});$('saveMsg').textContent=ok?' 已儲存':' 無法儲存'};
+$('fillPresenter').onclick=()=>{
+ const i=Number($('presenterWeek').value),model=presenterTemplate(i);
+ document.querySelectorAll('[data-p]').forEach((el,j)=>{if(!el.value.trim()){el.value=model[j];store.set(`presenter-${i}-${el.dataset.p}`,el.value)}});
+ $('saveMsg').textContent=' 已補入空白欄位；既有文字未改動，請自行修訂例子與活動。';
+};
+function renderJournal(){
+ $('journalText').value=store.get('journal-'+$('journalWeek').value)||'';
+ $('journalList').replaceChildren();
+ W.forEach((w,i)=>{const t=store.get('journal-'+i);if(!t)return;
+  const d=document.createElement('div');d.className='card';const caption=document.createElement('small');caption.textContent=`第${i+1}週｜${w.t}`;
+  const p=document.createElement('p');p.textContent=t;d.append(caption,p);$('journalList').appendChild(d)
+ });
+}
+$('journalWeek').addEventListener('change',renderJournal);
+$('journalText').addEventListener('input',()=>{
+ let ok=store.set('journal-'+$('journalWeek').value,$('journalText').value);
+ $('journalStatus').textContent=ok?' 已自動儲存':' 無法自動儲存';renderJournal();
+});
+$('saveJournal').onclick=()=>{let ok=store.set('journal-'+$('journalWeek').value,$('journalText').value);$('journalStatus').textContent=ok?' 已儲存':' 無法儲存';renderJournal()};
+renderJournal();
+$('exportRecords').onclick=()=>{
+  let exportData={app:'引導與反思研究 V2.1',exportedAt:new Date().toISOString(),items:store.all()};
+  const blob=new Blob([JSON.stringify(exportData,null,2)],{type:'application/json;charset=utf-8'});
+  const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='引導與反思研究_個人學習紀錄.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2000);
+};
 </script></body></html>
